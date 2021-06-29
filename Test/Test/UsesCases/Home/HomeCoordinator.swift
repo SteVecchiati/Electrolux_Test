@@ -11,6 +11,8 @@ class HomeCoordinator: Coordinator {
     
     unowned let delegate: AppCoordinatorDelegate
     
+    private var navController: UINavigationController?
+    
     private lazy var homeViewController: HomeViewController! = {
         return HomeViewController(delegate: self)
     }()
@@ -22,7 +24,13 @@ class HomeCoordinator: Coordinator {
     
     func start(_ router: CoordinatorRouter?) -> UIViewController? {
         
-        return homeViewController
+        if let navController = navController {
+            navController.pushViewController(homeViewController, animated: true)
+        } else {
+            navController = UINavigationController(root: homeViewController)
+        }
+        
+        return navController
     }
     
     

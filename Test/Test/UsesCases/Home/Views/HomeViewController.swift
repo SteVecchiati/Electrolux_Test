@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol HomeViewControllerDelegate: AnyObject {
+protocol HomeViewControllerDelegate: HomeViewDelegate {
 }
 
 class HomeViewController: UIViewController {
@@ -25,13 +25,16 @@ class HomeViewController: UIViewController {
     }
     
     override func loadView() {
-        homeView = HomeView()
+        homeView = HomeView(delegate: delegate)
     }
     
     init(delegate: HomeViewControllerDelegate) {
         self.delegate = delegate
 
         super.init(nibName: nil, bundle: nil)
+        
+        
+        title = "HOME"
         
 
     }

@@ -23,6 +23,8 @@
 		7B2A7160268B1F5300C9944E /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A715F268B1F5300C9944E /* HomeCoordinator.swift */; };
 		7B2A7163268B1FDD00C9944E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A7162268B1FDD00C9944E /* HomeViewController.swift */; };
 		7B2A7165268B202400C9944E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A7164268B202400C9944E /* HomeView.swift */; };
+		7B2A7168268B226900C9944E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A7167268B226900C9944E /* HomeViewModel.swift */; };
+		7B2A716B268B33AC00C9944E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A716A268B33AC00C9944E /* ImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		7B2A715F268B1F5300C9944E /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		7B2A7162268B1FDD00C9944E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7B2A7164268B202400C9944E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7B2A7167268B226900C9944E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		7B2A716A268B33AC00C9944E /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		EC458CBA11CDF159D3189A0B /* Pods-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.debug.xcconfig"; path = "Target Support Files/Pods-Test/Pods-Test.debug.xcconfig"; sourceTree = "<group>"; };
 		F9493AB8CA68D58E24CA1DFB /* Pods-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.release.xcconfig"; path = "Target Support Files/Pods-Test/Pods-Test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +171,7 @@
 		7B2A715E268B1F3B00C9944E /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				7B2A7166268B225400C9944E /* ViewModel */,
 				7B2A7161268B1FAF00C9944E /* Views */,
 				7B2A715F268B1F5300C9944E /* HomeCoordinator.swift */,
 			);
@@ -176,10 +181,27 @@
 		7B2A7161268B1FAF00C9944E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7B2A7169268B338D00C9944E /* CollectionViewCell */,
 				7B2A7162268B1FDD00C9944E /* HomeViewController.swift */,
 				7B2A7164268B202400C9944E /* HomeView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		7B2A7166268B225400C9944E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A7167268B226900C9944E /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7B2A7169268B338D00C9944E /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A716A268B33AC00C9944E /* ImageCell.swift */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,10 +308,12 @@
 				7B2A7153268B17AA00C9944E /* Extensions.swift in Sources */,
 				7B2A712E268B0FE500C9944E /* AppDelegate.swift in Sources */,
 				7B2A7147268B15A200C9944E /* ErrorModel.swift in Sources */,
+				7B2A7168268B226900C9944E /* HomeViewModel.swift in Sources */,
 				7B2A7145268B157A00C9944E /* APIError.swift in Sources */,
 				7B2A7155268B184500C9944E /* Coordinator.swift in Sources */,
 				7B2A7160268B1F5300C9944E /* HomeCoordinator.swift in Sources */,
 				7B2A7163268B1FDD00C9944E /* HomeViewController.swift in Sources */,
+				7B2A716B268B33AC00C9944E /* ImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
