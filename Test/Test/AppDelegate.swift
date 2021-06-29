@@ -10,13 +10,24 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    private var rootCoordinator: Coordinator?
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        rootCoordinator = AppCoordinator(delegate: self)
+
+        rootCoordinator?.start(AppCoordinator.Router.home)
+        
         return true
     }
 
 
+}
+
+extension AppDelegate: AppBaseDelegate {
+    func keyWindowChanged(_ window: UIWindow) {
+        self.window = window
+    }
 }
 
