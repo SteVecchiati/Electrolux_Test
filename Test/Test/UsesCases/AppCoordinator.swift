@@ -41,8 +41,7 @@ class AppCoordinator: NSObject, Coordinator {
         
         switch self.router {
         case .home:
-            // HomeCoordinator doesn't exist yet, need to be created
-//            rootCoordinator = HomeCoordinator(delegate: self)
+            rootCoordinator = HomeCoordinator(delegate: self)
             
             window.rootViewController = rootCoordinator?.start(nil)
             window.makeKeyAndVisible()

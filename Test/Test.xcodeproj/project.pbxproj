@@ -20,6 +20,9 @@
 		7B2A7155268B184500C9944E /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A7154268B184500C9944E /* Coordinator.swift */; };
 		7B2A715A268B189400C9944E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A7159268B189400C9944E /* APIRouter.swift */; };
 		7B2A715D268B1C7D00C9944E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A715C268B1C7D00C9944E /* AppCoordinator.swift */; };
+		7B2A7160268B1F5300C9944E /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A715F268B1F5300C9944E /* HomeCoordinator.swift */; };
+		7B2A7163268B1FDD00C9944E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A7162268B1FDD00C9944E /* HomeViewController.swift */; };
+		7B2A7165268B202400C9944E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A7164268B202400C9944E /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		7B2A7154268B184500C9944E /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7B2A7159268B189400C9944E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		7B2A715C268B1C7D00C9944E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		7B2A715F268B1F5300C9944E /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		7B2A7162268B1FDD00C9944E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7B2A7164268B202400C9944E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EC458CBA11CDF159D3189A0B /* Pods-Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.debug.xcconfig"; path = "Target Support Files/Pods-Test/Pods-Test.debug.xcconfig"; sourceTree = "<group>"; };
 		F9493AB8CA68D58E24CA1DFB /* Pods-Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test.release.xcconfig"; path = "Target Support Files/Pods-Test/Pods-Test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,8 +159,27 @@
 			isa = PBXGroup;
 			children = (
 				7B2A715C268B1C7D00C9944E /* AppCoordinator.swift */,
+				7B2A715E268B1F3B00C9944E /* Home */,
 			);
 			path = UsesCases;
+			sourceTree = "<group>";
+		};
+		7B2A715E268B1F3B00C9944E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A7161268B1FAF00C9944E /* Views */,
+				7B2A715F268B1F5300C9944E /* HomeCoordinator.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7B2A7161268B1FAF00C9944E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A7162268B1FDD00C9944E /* HomeViewController.swift */,
+				7B2A7164268B202400C9944E /* HomeView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +279,7 @@
 			files = (
 				7B2A7151268B175D00C9944E /* Constant.swift in Sources */,
 				7B2A715A268B189400C9944E /* APIRouter.swift in Sources */,
+				7B2A7165268B202400C9944E /* HomeView.swift in Sources */,
 				7B2A715D268B1C7D00C9944E /* AppCoordinator.swift in Sources */,
 				7B2A714F268B16B300C9944E /* APIManager.swift in Sources */,
 				7B2A714D268B162C00C9944E /* StandardService.swift in Sources */,
@@ -262,6 +288,8 @@
 				7B2A7147268B15A200C9944E /* ErrorModel.swift in Sources */,
 				7B2A7145268B157A00C9944E /* APIError.swift in Sources */,
 				7B2A7155268B184500C9944E /* Coordinator.swift in Sources */,
+				7B2A7160268B1F5300C9944E /* HomeCoordinator.swift in Sources */,
+				7B2A7163268B1FDD00C9944E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +358,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -385,7 +413,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
