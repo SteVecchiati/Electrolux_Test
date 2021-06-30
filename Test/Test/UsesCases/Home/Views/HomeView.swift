@@ -115,6 +115,9 @@ class HomeView: UIView {
     func savePhoto() {
         viewModel.saveToLibrary()
     }
+    func removeSelectedPhoto() {
+        viewModel.selectedPhoto = nil
+    }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {

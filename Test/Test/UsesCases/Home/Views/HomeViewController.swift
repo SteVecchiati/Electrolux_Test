@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTapped))
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        navBarSaveButtonEnable(state: false)
         
         searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchBar)
@@ -65,6 +65,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        navBarSaveButtonEnable(state: false)
         homeView.filterForTag(tag: QueryItemSearchPhoto(tags: searchBar.text))
     }
 }
@@ -76,6 +77,10 @@ extension HomeViewController: HomeViewControllerDelegate {
     
     func navBarSaveButtonEnable(state: Bool) {
         navigationItem.rightBarButtonItem?.isEnabled = state
+        
+        if !state {
+            homeView.removeSelectedPhoto()
+        }
     }
     
     
