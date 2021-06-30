@@ -23,7 +23,7 @@ extension UINavigationController {
         
         let textColor: UIColor = .black
         
-        navigationBar.tintColor = .black
+        navigationBar.tintColor = .orange
         navigationBar.barTintColor = .white
 
         navigationBar.shadowImage = UIImage()

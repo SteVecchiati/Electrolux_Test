@@ -30,9 +30,6 @@ class HomeCoordinator: Coordinator {
             navController = UINavigationController(root: homeViewController)
         }
         
-        //let's tint the navBar with orange for be consistent with the color of the selected cell
-        navController?.navigationBar.tintColor = .orange
-        
         return navController
     }
     
