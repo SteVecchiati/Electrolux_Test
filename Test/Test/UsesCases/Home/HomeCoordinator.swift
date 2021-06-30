@@ -37,6 +37,10 @@ class HomeCoordinator: Coordinator {
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {
+    func presentAlert(alert: UIAlertController) {
+        homeViewController.present(alert, animated: true)
+    }
+    
     
     
 }

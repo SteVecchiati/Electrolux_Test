@@ -10,7 +10,7 @@ import Foundation
 enum APIRouter: URLRequestConvertible {
         static let baseURLString = "https://api.flickr.com/"
 
-    case searchPhotos(String)
+    case searchPhotos(QueryItemSearchPhoto)
 
     // TODO: use auto string value
     var description: String {
@@ -34,9 +34,9 @@ enum APIRouter: URLRequestConvertible {
     
     var queryItems: [URLQueryItem]? {
         switch self {
-        default:
-            return nil
-            }
+        case let .searchPhotos(request):
+            return request.toQueryItems()
+        }
     }
     
     // if urlStr is passed in, this is used to create the URLRequest bypassing the default creation
@@ -59,19 +59,19 @@ enum APIRouter: URLRequestConvertible {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue.uppercased()
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let sessionID = APIManager.shared.sessionID {
-            request.setValue("Bearer " + sessionID, forHTTPHeaderField: "Authorization")
-        }
+//        if let sessionID = APIManager.shared.sessionID {
+//            request.setValue("Bearer " + sessionID, forHTTPHeaderField: "Authorization")
+//        }
 
-        request.httpBody = payload
+//        request.httpBody = payload
 
         return request
     }
 
     private var path: String {
         switch self {
-        case let .searchPhotos(tag):
-            return "services/rest?api_key=3b5800cf54e695681350d3f47ff1e76f&method=flickr.photos.search&tags=\(tag)&format=json&nojsoncallback=true&extras=media&extras=url_sq&extras=url_m&per_page=20&page=1"
+        case .searchPhotos:
+            return "services/rest"
         }
     }
     

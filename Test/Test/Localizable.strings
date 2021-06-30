@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Test
+
+  Created by stefano vecchiati on 30/06/21.
+  
+*/
+
+/* ErrorAlert */
+"error_alert_title" = "OPS!";
+"error_alert_description" = "Something went wrong";
+"error_alert_retry" = "Retry";
+
+/* HomeViewController */
+"home_nav_bar_title" = "HOME";

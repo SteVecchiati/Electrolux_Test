@@ -34,7 +34,7 @@ class HomeViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         
-        title = "HOME"
+        title = NSLocalizedString("home_nav_bar_title", comment: "HomeViewController")
         
 
     }

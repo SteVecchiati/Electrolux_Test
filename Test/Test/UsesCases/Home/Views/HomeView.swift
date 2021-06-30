@@ -9,11 +9,14 @@ import UIKit
 import Stevia
 
 protocol HomeViewDelegate: AnyObject {
+    func presentAlert(alert: UIAlertController)
 }
 
 class HomeView: UIView {
     
     private let viewModel: HomeViewModel
+    
+    unowned let delegate: HomeViewDelegate
     
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
@@ -22,6 +25,8 @@ class HomeView: UIView {
     init(delegate: HomeViewDelegate) {
         
         viewModel = HomeViewModel(delegate: delegate)
+        
+        self.delegate = delegate
         
         super.init(frame: CGRect.zero)
     
@@ -33,11 +38,36 @@ class HomeView: UIView {
         setCollectionView()
         setApperance()
         
+        filterForTag(tag: QueryItemSearchPhoto(tags: "Electrolux"))
+
         
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func filterForTag(tag: QueryItemSearchPhoto) {
+        
+        viewModel.searchPhotos(tag: tag) { [weak self] in
+            
+            self?.collectionView.reloadData()
+            
+        } errorCallback: { [weak self] error, _ in
+            
+            debugPrint(error)
+            
+            let alert = UIAlertController(title: NSLocalizedString("error_alert_title", comment: "ErrorAlert"), message: NSLocalizedString("error_alert_description", comment: "ErrorAlert"), preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: NSLocalizedString("error_alert_retry", comment: "ErrorAlert"), style: .default, handler: { [weak self] _ in
+                
+                self?.filterForTag(tag: QueryItemSearchPhoto(tags: "Electrolux"))
+                
+            }))
+            self?.delegate.presentAlert(alert: alert)
+            
+        }
+        
     }
     
     
@@ -82,13 +112,13 @@ class HomeView: UIView {
 extension HomeView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.elements.count
+        return viewModel.photosModel.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCell.self), for: indexPath) as! ImageCell
-        cell.update(string: viewModel.elements[indexPath.item])
+        cell.update(string: viewModel.photosModel[indexPath.item])
         return cell
     }
 }

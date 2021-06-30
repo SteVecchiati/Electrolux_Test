@@ -10,13 +10,13 @@ import Stevia
 
 class ImageCell: UICollectionViewCell {
     
-    private let label = UILabel()
+    let activityIndicator = UIActivityIndicatorView()
     
     override init(frame _: CGRect) {
         super.init(frame: .zero)
         
         sv(
-            label
+            activityIndicator
         )
         
         setConstraints()
@@ -29,10 +29,11 @@ class ImageCell: UICollectionViewCell {
     }
     
     func setConstraints() {
-        label.centerInContainer()
+        activityIndicator.centerInContainer()
     }
     
-    func update(string: String) {
-        label.text = string
+    func update(string: Photo) {
+        activityIndicator.color = .black
+        activityIndicator.startAnimating()
     }
 }
