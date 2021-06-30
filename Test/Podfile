@@ -1,0 +1,13 @@
+
+
+def shared_pods
+
+    use_modular_headers!
+    pod 'SteviaLayout', '4.5.0'
+    pod 'PromiseKit'
+
+end
+
+target 'Test' do
+  shared_pods
+end
