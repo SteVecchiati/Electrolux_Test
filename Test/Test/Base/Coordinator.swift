@@ -13,7 +13,3 @@ protocol Coordinator {
     @discardableResult
     func start(_ router: CoordinatorRouter?) -> UIViewController?
 }
-
-protocol InteractorOutput: AnyObject {
-    func errorResponse(_ error: Error, from endpoint: APIRouter)
-}
