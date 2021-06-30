@@ -10,18 +10,23 @@ import Stevia
 
 class ImageCell: UICollectionViewCell {
     
-    let activityIndicator = UIActivityIndicatorView()
+    private let activityIndicator = UIActivityIndicatorView()
+    private let imageView = UIImageView()
+    
+    private var image: UIImage?
     
     override init(frame _: CGRect) {
         super.init(frame: .zero)
         
         sv(
-            activityIndicator
+            activityIndicator,
+            imageView
         )
         
         setConstraints()
         
         backgroundColor = .white
+        activityIndicator.hidesWhenStopped = true
     }
     
     required init?(coder _: NSCoder) {
@@ -30,10 +35,26 @@ class ImageCell: UICollectionViewCell {
     
     func setConstraints() {
         activityIndicator.centerInContainer()
+        
+        imageView.fillContainer(8)
     }
     
-    func update(string: Photo) {
+    func update(photo: Photo, viewModel: HomeViewModel) {
+        downloadImage(photo: photo, viewModel: viewModel)
+    }
+    
+    private func downloadImage(photo: Photo, viewModel: HomeViewModel) {
         activityIndicator.color = .black
         activityIndicator.startAnimating()
+        imageView.image = nil
+        
+        viewModel.downloadPhoto(serverID: photo.server, id: photo.id, secret: photo.secret) { [weak self] data in
+            self?.activityIndicator.stopAnimating()
+            self?.image = UIImage(data: data)
+            self?.imageView.image = self?.image
+        } errorCallback: { error, _ in
+            //TODO: Implement an error state
+            debugPrint(error)
+        }
     }
 }

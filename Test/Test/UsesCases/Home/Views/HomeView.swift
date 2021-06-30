@@ -118,7 +118,7 @@ extension HomeView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCell.self), for: indexPath) as! ImageCell
-        cell.update(string: viewModel.photosModel[indexPath.item])
+        cell.update(photo: viewModel.photosModel[indexPath.item], viewModel: viewModel)
         return cell
     }
 }

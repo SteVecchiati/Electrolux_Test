@@ -23,6 +23,19 @@ class StandardService {
         }
     }
     
+    func makeCall<ErrorCodes: ErrorCodeInfo>(endpoint: URLRequestConvertible, errorType: ErrorCodes.Type) -> Promise<(HTTPURLResponse, Data)> {
+        let urlRequest = endpoint.asURLRequest(nil)
+        return attempt(maximumRetryCount: endpoint.retryAttempts) {
+            APIManager.shared.session.dataTask(.promise, with: urlRequest)
+                .recover { error -> Promise<(data: Data, response: URLResponse)> in
+                    throw APIError.errorFor(error, endpoint: endpoint)
+                }
+                .validate(endpoint, errorType: errorType, request: urlRequest)
+        }.map {
+            ($0.response as! HTTPURLResponse, $0.data)
+        }
+    }
+    
     func makeCall<Model: Decodable, ErrorCodes: ErrorCodeInfo>(endpoint: URLRequestConvertible,
                                                                modelType _: Model.Type,
                                                                errorType: ErrorCodes.Type) -> Promise<Model> {

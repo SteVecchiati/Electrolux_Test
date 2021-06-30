@@ -36,5 +36,19 @@ extension HomeViewModel {
             }
     }
     
+    func downloadPhoto(serverID: String, id: String, secret: String, callback: ((Data) -> Void)?, errorCallback: ((Error, URLRequestConvertible) -> Void)?) {
+        let endpoint = APIRouter.downloadPhoto(serverID, id, secret)
+        DispatchQueue.global(qos: .utility).async {
+            self.service.makeCall(endpoint: endpoint,
+                          errorType: String.self)
+            .done(on: DispatchQueue.main) { response in
+                callback?(response.1)
+            }
+            .catch(on: DispatchQueue.main) { error in
+                errorCallback?(error, endpoint)
+            }
+        }
+    }
+    
     
 }
