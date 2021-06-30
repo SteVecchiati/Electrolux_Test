@@ -39,6 +39,7 @@ struct QueryItemSearchPhoto {
     let page = "1"
     
     init(tags: String?) {
+        //use tag Electrolux as default, so if we pass a nil string we will search for Electrolux
         self.tags = tags ?? "Electrolux"
     }
     
