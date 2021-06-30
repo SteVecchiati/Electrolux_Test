@@ -94,6 +94,7 @@ class HomeView: UIView {
         layout.minimumLineSpacing = 8
 
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: String(describing: ImageCell.self))
     }
     
@@ -109,7 +110,7 @@ class HomeView: UIView {
     
 }
 
-extension HomeView: UICollectionViewDataSource {
+extension HomeView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.photosModel.count
@@ -120,6 +121,11 @@ extension HomeView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ImageCell.self), for: indexPath) as! ImageCell
         cell.update(photo: viewModel.photosModel[indexPath.item], viewModel: viewModel)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? ImageCell
+        cell?.isSelected = true
     }
 }
 

@@ -15,6 +15,12 @@ class ImageCell: UICollectionViewCell {
     
     private var image: UIImage?
     
+    override var isSelected: Bool {
+        didSet {
+            backgroundColor = isSelected ? .orange : .white
+        }
+    }
+    
     override init(frame _: CGRect) {
         super.init(frame: .zero)
         
