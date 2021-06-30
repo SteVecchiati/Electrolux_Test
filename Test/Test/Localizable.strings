@@ -14,9 +14,9 @@
 /* Alert */
 "alert_okay" = "OK";
 
-/* HomeViewController */
-"home_nav_bar_title" = "HOME";
-
 /* SavedPhoto */
 "photo_saved_title" = "Saved!";
 "photo_saved_message" = "The Photo has been saved to your library.";
+
+/* Search */
+"placeholder_search_bar" = "Search";

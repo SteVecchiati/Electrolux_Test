@@ -14,6 +14,13 @@ class HomeViewController: UIViewController {
     
     unowned let delegate: HomeViewControllerDelegate
     
+    private var searchBar: UISearchBar! {
+        didSet {
+            searchBar.placeholder = NSLocalizedString("placeholder_search_bar", comment: "Search")
+            searchBar.delegate = self
+        }
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .default
     }
@@ -33,10 +40,17 @@ class HomeViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
         
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        title = NSLocalizedString("home_nav_bar_title", comment: "HomeViewController")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTapped))
         navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: searchBar)
+        
     }
     
     @objc private func saveTapped() {
@@ -45,6 +59,13 @@ class HomeViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        homeView.filterForTag(tag: QueryItemSearchPhoto(tags: searchBar.text))
     }
 }
 

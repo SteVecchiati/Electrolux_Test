@@ -30,17 +30,20 @@ class HomeView: UIView {
         self.delegate = delegate
         
         super.init(frame: CGRect.zero)
-    
+        
         sv(
             collectionView
         )
-       
+        
         setConstraints()
         setCollectionView()
         setApperance()
         
         filterForTag(tag: QueryItemSearchPhoto(tags: "Electrolux"))
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         
     }
     
@@ -48,7 +51,7 @@ class HomeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func filterForTag(tag: QueryItemSearchPhoto) {
+    func filterForTag(tag: QueryItemSearchPhoto) {
         
         viewModel.searchPhotos(tag: tag) { [weak self] in
             
@@ -59,7 +62,7 @@ class HomeView: UIView {
             debugPrint(error)
             
             let alert = UIAlertController(title: NSLocalizedString("error_alert_title", comment: "ErrorAlert"), message: NSLocalizedString("error_alert_description", comment: "ErrorAlert"), preferredStyle: .alert)
-
+            
             alert.addAction(UIAlertAction(title: NSLocalizedString("error_alert_retry", comment: "ErrorAlert"), style: .default, handler: { [weak self] _ in
                 
                 self?.filterForTag(tag: QueryItemSearchPhoto(tags: "Electrolux"))
@@ -87,13 +90,13 @@ class HomeView: UIView {
     private func setCollectionView() {
         collectionView.backgroundColor = .clear
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 16, right: 0)
-
+        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         layout.itemSize = .zero
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
-
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: String(describing: ImageCell.self))
@@ -111,6 +114,20 @@ class HomeView: UIView {
     
     func savePhoto() {
         viewModel.saveToLibrary()
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if collectionView.contentInset.bottom == 16 {
+                collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: keyboardSize.height + 16, right: 0)
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if collectionView.contentInset.bottom != 16 {
+            collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 16, right: 0)
+        }
     }
     
 }

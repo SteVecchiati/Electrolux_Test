@@ -38,8 +38,8 @@ struct QueryItemSearchPhoto {
     let perPage = "20"
     let page = "1"
     
-    init(tags: String) {
-        self.tags = tags
+    init(tags: String?) {
+        self.tags = tags ?? "Electrolux"
     }
     
     

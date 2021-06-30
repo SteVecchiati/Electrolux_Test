@@ -32,6 +32,9 @@ class ImageCell: UICollectionViewCell {
         setConstraints()
         
         backgroundColor = .white
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
         activityIndicator.hidesWhenStopped = true
     }
     
