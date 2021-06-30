@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     }
     
     override func loadView() {
-        homeView = HomeView(delegate: delegate)
+        homeView = HomeView(delegate: self)
     }
     
     init(delegate: HomeViewControllerDelegate) {
@@ -35,8 +35,12 @@ class HomeViewController: UIViewController {
         
         
         title = NSLocalizedString("home_nav_bar_title", comment: "HomeViewController")
-        
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTapped))
+        navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
+    @objc private func saveTapped() {
+        homeView.savePhoto()
     }
     
     required init?(coder: NSCoder) {
@@ -44,3 +48,14 @@ class HomeViewController: UIViewController {
     }
 }
 
+extension HomeViewController: HomeViewControllerDelegate {
+    func presentAlert(alert: UIAlertController) {
+        delegate.presentAlert(alert: alert)
+    }
+    
+    func navBarSaveButtonEnable(state: Bool) {
+        navigationItem.rightBarButtonItem?.isEnabled = state
+    }
+    
+    
+}

@@ -13,7 +13,7 @@ class ImageCell: UICollectionViewCell {
     private let activityIndicator = UIActivityIndicatorView()
     private let imageView = UIImageView()
     
-    private var image: UIImage?
+    var image: UIImage?
     
     override var isSelected: Bool {
         didSet {
@@ -39,7 +39,7 @@ class ImageCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         activityIndicator.centerInContainer()
         
         imageView.fillContainer(8)

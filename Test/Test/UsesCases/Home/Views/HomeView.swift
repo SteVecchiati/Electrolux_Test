@@ -10,6 +10,7 @@ import Stevia
 
 protocol HomeViewDelegate: AnyObject {
     func presentAlert(alert: UIAlertController)
+    func navBarSaveButtonEnable(state: Bool)
 }
 
 class HomeView: UIView {
@@ -47,7 +48,7 @@ class HomeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func filterForTag(tag: QueryItemSearchPhoto) {
+    private func filterForTag(tag: QueryItemSearchPhoto) {
         
         viewModel.searchPhotos(tag: tag) { [weak self] in
             
@@ -71,7 +72,7 @@ class HomeView: UIView {
     }
     
     
-    func setConstraints() {
+    private func setConstraints() {
         layout(
             0,
             |-8 - collectionView - 8-|,
@@ -79,11 +80,11 @@ class HomeView: UIView {
         )
     }
     
-    func setApperance() {
+    private func setApperance() {
         backgroundColor = .lightGray
     }
     
-    func setCollectionView() {
+    private func setCollectionView() {
         collectionView.backgroundColor = .clear
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 16, right: 0)
 
@@ -108,6 +109,10 @@ class HomeView: UIView {
         layout.itemSize = CGSize(width: widthSize, height: widthSize)
     }
     
+    func savePhoto() {
+        viewModel.saveToLibrary()
+    }
+    
 }
 
 extension HomeView: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -124,8 +129,11 @@ extension HomeView: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? ImageCell
-        cell?.isSelected = true
+        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCell {
+            cell.isSelected = true
+            viewModel.selectedPhoto = cell.image
+            delegate.navBarSaveButtonEnable(state: cell.isSelected)
+        }
     }
 }
 

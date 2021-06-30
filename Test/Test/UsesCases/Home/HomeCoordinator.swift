@@ -30,6 +30,9 @@ class HomeCoordinator: Coordinator {
             navController = UINavigationController(root: homeViewController)
         }
         
+        //let's tint the navBar with orange for be consistent with the color of the selected cell
+        navController?.navigationBar.tintColor = .orange
+        
         return navController
     }
     
@@ -37,6 +40,11 @@ class HomeCoordinator: Coordinator {
 }
 
 extension HomeCoordinator: HomeViewControllerDelegate {
+    func navBarSaveButtonEnable(state: Bool) {
+        fatalError("navBarSaveButtonEnable into HomeCoordinator should never work, if we land here maybe something is wrong")
+    }
+    
+    
     func presentAlert(alert: UIAlertController) {
         homeViewController.present(alert, animated: true)
     }
